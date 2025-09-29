@@ -1,0 +1,24 @@
+CREATE TABLE "CLIENT" (
+    "ID" SERIAL PRIMARY KEY,
+    "NAME" VARCHAR(255),
+    "GENDER" VARCHAR(50),
+    "AGE" INT,
+    "IDENTIFICATION" VARCHAR(100),
+    "ADDRESS" VARCHAR(255),
+    "PHONE_NUMBER" VARCHAR(50),
+    "PASSWORD" VARCHAR(255),
+    "CLIENT_STATE" BOOLEAN
+);
+
+INSERT INTO "CLIENT" ("NAME", "GENDER", "AGE", "IDENTIFICATION", "ADDRESS", "PHONE_NUMBER", "PASSWORD", "CLIENT_STATE")
+VALUES 
+('Juan Pérez', 'M', 30, 'ID12345', 'Calle Falsa 123', '555-111-1111', 'pass123', TRUE),
+('María López', 'F', 28, 'ID12346', 'Av. Reforma 456', '555-222-2222', 'secret456', TRUE),
+('Carlos Sánchez', 'M', 35, 'ID12347', 'Col. Centro 789', '555-333-3333', 'qwerty789', TRUE),
+('Ana Gómez', 'F', 40, 'ID12348', 'Calle Sur 321', '555-444-4444', 'admin321', FALSE),
+('Pedro Ramírez', 'M', 50, 'ID12349', 'Calle Norte 654', '555-555-5555', 'pwd654', TRUE),
+('Laura Torres', 'F', 22, 'ID12350', 'Av. Insurgentes 987', '555-666-6666', 'lt987', TRUE),
+('Jorge Castillo', 'M', 29, 'ID12351', 'Col. Roma 147', '555-777-7777', 'jc147', TRUE),
+('Patricia Díaz', 'F', 33, 'ID12352', 'Col. Del Valle 258', '555-888-8888', 'pd258', FALSE),
+('Andrés Herrera', 'M', 27, 'ID12353', 'Av. Juárez 369', '555-999-9999', 'ah369', TRUE),
+('Gabriela Morales', 'F', 31, 'ID12354', 'Calle Poniente 741', '555-000-0000', 'gm741', TRUE);

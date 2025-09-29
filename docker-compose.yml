@@ -1,0 +1,83 @@
+services:
+  # -----------------------------
+  # Base de datos User Service
+  # -----------------------------
+  user-postgres:
+    image: postgres:15
+    container_name: user-postgres
+    environment:
+      POSTGRES_DB: userdb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/init-user.sql:/docker-entrypoint-initdb.d/init.sql
+      - postgres_user_data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  # -----------------------------
+  # Base de datos Account Service
+  # -----------------------------
+  account-postgres:
+    image: postgres:15
+    container_name: account-postgres
+    environment:
+      POSTGRES_DB: accountdb
+      POSTGRES_USER: account
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./db/init-account.sql:/docker-entrypoint-initdb.d/init.sql
+      - postgres_account_data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  # -----------------------------
+  # Microservicio User Service
+  # -----------------------------
+  user-service:
+    build: ./user-service
+    container_name: user-service
+    ports:
+      - "8081:8081"
+    environment:
+      USER_SPRING_DATASOURCE_URL: jdbc:postgresql://user-postgres:5432/userdb
+      USER_SPRING_DATASOURCE_USERNAME: user
+      USER_SPRING_DATASOURCE_PASSWORD: 1234
+      USER_SPRING_PORT: 8081
+    depends_on:
+      - user-postgres
+    networks:
+      - backend
+
+  # -----------------------------
+  # Microservicio Account Service
+  # -----------------------------
+  account-service:
+    build: ./account-service
+    container_name: account-service
+    ports:
+      - "8082:8082"
+    environment:
+      ACCOUNT_SPRING_DATASOURCE_URL: jdbc:postgresql://account-postgres:5432/accountdb
+      ACCOUNT_SPRING_DATASOURCE_USERNAME: account
+      ACCOUNT_SPRING_DATASOURCE_PASSWORD: 1234
+      ACCOUNT_SPRING_PORT: 8082
+    depends_on:
+      - account-postgres
+    networks:
+      - backend
+
+# -----------------------------
+# Red compartida
+# -----------------------------
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  postgres_user_data:
+  postgres_account_data:

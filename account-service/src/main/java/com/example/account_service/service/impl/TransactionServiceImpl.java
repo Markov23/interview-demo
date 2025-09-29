@@ -9,9 +9,10 @@ import com.example.account_service.dto.transaction.TransactionDTO;
 import com.example.account_service.dto.transaction.TransactionUpdateDTO;
 import com.example.account_service.entity.Transaction;
 import com.example.account_service.repository.TransactionRepository;
+import com.example.account_service.service.TransactionService;
 
 @Service
-public class TransactionServiceImpl {
+public class TransactionServiceImpl implements TransactionService{
     private final TransactionRepository transactionRepository;
 
     public TransactionServiceImpl(TransactionRepository transactionRepository) {
