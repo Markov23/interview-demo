@@ -3,9 +3,13 @@ package com.example.account_service.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.account_service.common.enums.AccountType;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -17,18 +21,19 @@ import lombok.Data;
 public class Account {
     @Id
     @Column(name = "\"ACCOUNT_NUMBER\"")
-    private Long number;
+    private String number;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "\"ACCOUNT_TYPE\"")
-    private String type;
+    private AccountType type;
 
-    @Column(name = "\"INITIAL_BALANCE\"")
+    @Column(name = "\"INITIAL_BALANCE\"", nullable = false)
     private Double initialBalance;
 
-    @Column(name = "\"ACCOUNT_STATE\"")
-    private Boolean state;
+    @Column(name = "\"ACCOUNT_STATE\"", nullable = false)
+    private Boolean state = true;
 
-    @Column(name = "\"CLIENT_ID\"")
+    @Column(name = "\"CLIENT_ID\"", nullable = false)
     private Integer clientId;
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)

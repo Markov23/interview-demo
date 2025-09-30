@@ -4,7 +4,5 @@ import lombok.Data;
 
 @Data
 public class AccountUpdateDTO {
-    private String type;
-    private Double initialBalance;
     private Boolean state;
 }

@@ -8,11 +8,12 @@ import com.example.user_service.dto.client.ClientCreateDTO;
 import com.example.user_service.dto.client.ClientDTO;
 import com.example.user_service.dto.client.ClientUpdateDTO;
 import com.example.user_service.entity.Client;
+import com.example.user_service.exception.NotFoundException;
 import com.example.user_service.repository.ClientRepository;
 import com.example.user_service.service.ClientService;
 
 @Service
-public class ClientServiceImpl implements ClientService{
+public class ClientServiceImpl implements ClientService {
 
     private final ClientRepository clientRepository;
 
@@ -29,12 +30,14 @@ public class ClientServiceImpl implements ClientService{
     }
 
     public ClientDTO getClientById(Integer id) {
-        return ClientDTO.fromEntity(clientRepository.findById(id).get());
+
+        return ClientDTO.fromEntity(clientRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Client not found with id: " + id)));
     }
-    
+
     public ClientDTO updateClient(Integer id, ClientUpdateDTO clientUpdateDTO) {
         Client client = clientRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente no encontrado con id: " + id));
+                .orElseThrow(() -> new NotFoundException("Client not found with id: " + id));
 
         client.setName(clientUpdateDTO.getName());
         client.setGender(clientUpdateDTO.getGender());
@@ -50,7 +53,7 @@ public class ClientServiceImpl implements ClientService{
 
     public Integer deleteClient(Integer id) {
         Client client = clientRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente no encontrado con id: " + id));
+                .orElseThrow(() -> new NotFoundException("Client not found with id: " + id));
         clientRepository.delete(client);
 
         return client.getId();

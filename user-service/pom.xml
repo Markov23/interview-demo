@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>user-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>user-service</name>
 	<description>Demo project for Spring Boot (User)</description>
 	<url/>
@@ -69,9 +69,9 @@
     		<version>2.8.13</version>
 		</dependency>
 		<dependency>
-			<groupId>io.github.cdimascio</groupId>
-			<artifactId>dotenv-java</artifactId>
-			<version>3.0.0</version>
+			<groupId>com.example</groupId>
+			<artifactId>messaging-dto</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 	</dependencies>
 

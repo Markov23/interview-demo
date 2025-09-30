@@ -11,9 +11,7 @@ public interface AccountService {
 
     public List<AccountDTO> getAllAccounts();
 
-    public AccountDTO getAccountById(Long number);
+    public AccountDTO getAccountById(String id);
 
-    public AccountDTO updateAccount(Long number, AccountUpdateDTO accountUpdateDTO);
-    
-    public Long deleteAccount(Long number);
+    public AccountDTO updateAccount(String id, AccountUpdateDTO accountUpdateDTO);
 }

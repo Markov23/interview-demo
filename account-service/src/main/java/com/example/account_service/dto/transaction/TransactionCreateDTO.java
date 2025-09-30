@@ -2,6 +2,7 @@ package com.example.account_service.dto.transaction;
 
 import java.sql.Timestamp;
 
+import com.example.account_service.common.enums.TransactionType;
 import com.example.account_service.entity.Transaction;
 
 import lombok.Data;
@@ -11,14 +12,13 @@ public class TransactionCreateDTO {
     private Timestamp date;
     private String type;
     private Double value;
-    private Double balance; 
+    private String accountNumber;
 
     public Transaction toEntity() {
-        Transaction account = new Transaction();
-        account.setDate(this.date);
-        account.setType(this.type);
-        account.setValue(this.value);
-        account.setBalance(this.balance);
-        return account;
+        Transaction transaction = new Transaction();
+        transaction.setDate(this.date);
+        transaction.setType(TransactionType.valueOf(this.getType().toUpperCase()));
+        transaction.setValue(this.value);
+        return transaction;
     }
 }

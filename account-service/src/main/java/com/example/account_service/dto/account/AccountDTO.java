@@ -9,10 +9,11 @@ import lombok.Data;
 
 @Data
 public class AccountDTO {
-    private Long number;
+    private String number;
     private String type;
     private Double initialBalance;
     private Boolean state;
+    private Integer clientId;
 
     public static List<AccountDTO> fromEntities(List<Account> accounts) {
         return accounts.stream().map(account -> AccountDTO.fromEntity(account)).collect(Collectors.toList());
@@ -21,9 +22,10 @@ public class AccountDTO {
     public static AccountDTO fromEntity(Account account) {
         AccountDTO dto = new AccountDTO();
         dto.setNumber(account.getNumber());
-        dto.setType(account.getType());
+        dto.setType(account.getType().toString());
         dto.setInitialBalance(account.getInitialBalance());
         dto.setState(account.getState());
+        dto.setClientId(account.getClientId());
         return dto;
     }
 }

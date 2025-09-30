@@ -3,17 +3,17 @@ package com.example.user_service.dto;
 import lombok.Data;
 
 @Data
-public class ApiResponse<T> {
+public class ResponseApi<T> {
     private String message;
     private T data;
 
-    public ApiResponse() {}
+    public ResponseApi() {}
 
-    public ApiResponse(String message) {
+    public ResponseApi(String message) {
         this.message = message;
     }
 
-    public ApiResponse(String message, T data) {
+    public ResponseApi(String message, T data) {
         this.message = message;
         this.data = data;
     }

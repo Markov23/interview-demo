@@ -2,8 +2,12 @@ package com.example.account_service.entity;
 
 import java.sql.Timestamp;
 
+import com.example.account_service.common.enums.TransactionType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,17 +26,18 @@ public class Transaction {
     @Column(name = "\"TRANSACTION_ID\"")
     private Long id;
     
-    @Column(name = "\"TRANSACTION_DATE\"")
+    @Column(name = "\"TRANSACTION_DATE\"", nullable = false)
     private Timestamp date;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "\"TRANSACTION_TYPE\"")
-    private String type;
+    private TransactionType type;
 
-    @Column(name = "\"VALUE\"")
+    @Column(name = "\"VALUE\"", nullable = false)
     private Double value;
 
-    @Column(name = "\"BALANCE\"")
-    private Double balance; 
+    @Column(name = "\"BALANCE\"", nullable = false)
+    private Double balance;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "\"ACCOUNT_NUMBER\"")
