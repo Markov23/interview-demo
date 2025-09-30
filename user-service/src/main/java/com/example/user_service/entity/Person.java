@@ -1,6 +1,10 @@
 package com.example.user_service.entity;
 
+import com.example.user_service.common.enums.Gender;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,21 +19,22 @@ public class Person {
     @Column(name = "\"ID\"")
     private Integer id;
 
-    @Column(name = "\"NAME\"")
+    @Column(name = "\"NAME\"", nullable = false)
     private String name;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "\"GENDER\"")
-    private String gender;
+    private Gender gender;
 
-    @Column(name = "\"AGE\"")
+    @Column(name = "\"AGE\"", nullable = false)
     private Integer age;
 
-    @Column(name = "\"IDENTIFICATION\"")
+    @Column(name = "\"IDENTIFICATION\"", nullable = false)
     private String identification;
 
-    @Column(name = "\"ADDRESS\"")
+    @Column(name = "\"ADDRESS\"", nullable = false)
     private String address;
 
-    @Column(name = "\"PHONE_NUMBER\"")
+    @Column(name = "\"PHONE_NUMBER\"", nullable = false)
     private String phoneNumber;
 }

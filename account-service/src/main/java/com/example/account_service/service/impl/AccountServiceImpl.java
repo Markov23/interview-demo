@@ -28,25 +28,25 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public AccountDTO createAccount(AccountCreateDTO account) {
-        if(account.getInitialBalance() < 0) {
+    public AccountDTO createAccount(AccountCreateDTO accountCreateDTO) {
+        if(accountCreateDTO.getInitialBalance() < 0) {
             throw new BadRequestException("Initial balance must be positive");
         }
 
         try {
-            AccountType.valueOf(account.getType().toUpperCase());
+            AccountType.valueOf(accountCreateDTO.getType().toUpperCase());
         } catch(Exception ex) {
-            throw new BadRequestException("Invalid account type: " + account.getType());
+            throw new BadRequestException("Invalid account type: " + accountCreateDTO.getType());
         }
 
-        if (!clientValidationProducer.validateClient(account.getClientId())) {
-            throw new NotFoundException("Client not found with id: " + account.getClientId());
+        if (!clientValidationProducer.validateClient(accountCreateDTO.getClientId())) {
+            throw new NotFoundException("Client not found with id: " + accountCreateDTO.getClientId());
         }
 
-        Account accountEntity = account.toEntity();
-        accountEntity.setNumber(generateAccountNumber());
+        Account account = accountCreateDTO.toEntity();
+        account.setNumber(generateAccountNumber());
 
-        return AccountDTO.fromEntity(accountRepository.save(accountEntity));
+        return AccountDTO.fromEntity(accountRepository.save(account));
     }
 
     @Override

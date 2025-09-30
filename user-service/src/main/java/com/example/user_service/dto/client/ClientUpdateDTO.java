@@ -10,6 +10,4 @@ public class ClientUpdateDTO {
     private String identification;
     private String address;
     private String phoneNumber;
-    private String password;
-    private Boolean state;
 }

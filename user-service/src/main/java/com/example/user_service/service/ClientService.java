@@ -8,13 +8,13 @@ import com.example.user_service.dto.client.ClientUpdateDTO;
 
 public interface ClientService {
 
-    public ClientDTO createClient(ClientCreateDTO client);
+    public ClientDTO createClient(ClientCreateDTO clientCreateDTO);
 
     public List<ClientDTO> getAllClients();
 
     public ClientDTO getClientById(Integer id);
 
-    public ClientDTO updateClient(Integer id, ClientUpdateDTO clientDetails);
+    public ClientDTO updateClient(Integer id, ClientUpdateDTO clientUpdateDTO);
     
     public Integer deleteClient(Integer id);
 }

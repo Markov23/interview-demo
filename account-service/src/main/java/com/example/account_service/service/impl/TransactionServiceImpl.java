@@ -1,5 +1,6 @@
 package com.example.account_service.service.impl;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -28,33 +29,34 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     @Transactional
-    public TransactionDTO createTransaction(TransactionCreateDTO transaction) {
-        Account account = accountRepository.findById(transaction.getAccountNumber()).orElseThrow(
-                () -> new NotFoundException("Account not found with number: " + transaction.getAccountNumber()));
+    public TransactionDTO createTransaction(TransactionCreateDTO transactionCreateDTO) {
+        Account account = accountRepository.findById(transactionCreateDTO.getAccountNumber()).orElseThrow(
+                () -> new NotFoundException("Account not found with number: " + transactionCreateDTO.getAccountNumber()));
 
-        if(transaction.getValue() == 0) {
+        if(transactionCreateDTO.getValue() == 0) {
             throw new BadRequestException("The transaction value must be different from 0");
         }
 
-        Double newBalance = account.getInitialBalance() + transaction.getValue();
+        Double newBalance = account.getInitialBalance() + transactionCreateDTO.getValue();
         if (newBalance < 0) {
             throw new BadRequestException("Insufficient funds");
         }
 
         try {
-            TransactionType.valueOf(transaction.getType().toUpperCase());
+            TransactionType.valueOf(transactionCreateDTO.getType().toUpperCase());
         } catch(Exception ex) {
-            throw new BadRequestException("Invalid transaction type: " + transaction.getType());
+            throw new BadRequestException("Invalid transaction type: " + transactionCreateDTO.getType());
         }
 
         account.setInitialBalance(newBalance);
         accountRepository.save(account);
 
-        Transaction trans = transaction.toEntity();
-        trans.setAccount(account);
-        trans.setBalance(newBalance);
+        Transaction transaction = transactionCreateDTO.toEntity();
+        transaction.setAccount(account);
+        transaction.setBalance(newBalance);
+        transaction.setDate(new Timestamp(System.currentTimeMillis()));
 
-        return TransactionDTO.fromEntity(transactionRepository.save(trans));
+        return TransactionDTO.fromEntity(transactionRepository.save(transaction));
     }
 
     @Override

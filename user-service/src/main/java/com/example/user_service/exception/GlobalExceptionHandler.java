@@ -16,7 +16,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity<ResponseApi<?>> handleBadRequest(NotFoundException ex) {
+    public ResponseEntity<ResponseApi<?>> handleBadRequest(BadRequestException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(new ResponseApi<>(ex.getMessage()));
     }

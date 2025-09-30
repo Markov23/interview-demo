@@ -9,14 +9,12 @@ import lombok.Data;
 
 @Data
 public class TransactionCreateDTO {
-    private Timestamp date;
     private String type;
     private Double value;
     private String accountNumber;
 
     public Transaction toEntity() {
         Transaction transaction = new Transaction();
-        transaction.setDate(this.date);
         transaction.setType(TransactionType.valueOf(this.getType().toUpperCase()));
         transaction.setValue(this.value);
         return transaction;

@@ -11,9 +11,9 @@ import lombok.EqualsAndHashCode;
 @Table(name = "\"CLIENT\"")
 @EqualsAndHashCode(callSuper = true)
 public class Client extends Person{
-    @Column(name = "\"PASSWORD\"")
+    @Column(name = "\"PASSWORD\"", nullable = false)
     private String password;
 
-    @Column(name = "\"CLIENT_STATE\"")
-    private Boolean state;
+    @Column(name = "\"CLIENT_STATE\"", nullable = false)
+    private Boolean state = true;
 }

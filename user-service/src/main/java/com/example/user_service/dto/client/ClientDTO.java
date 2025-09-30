@@ -26,7 +26,7 @@ public class ClientDTO {
         ClientDTO dto = new ClientDTO();
         dto.setId(client.getId());
         dto.setName(client.getName());
-        dto.setGender(client.getGender());
+        dto.setGender(client.getGender().toString());
         dto.setAge(client.getAge());
         dto.setIdentification(client.getIdentification());
         dto.setAddress(client.getAddress());

@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.example.account_service.common.enums.TransactionType;
 import com.example.account_service.entity.Transaction;
 
 import lombok.Data;

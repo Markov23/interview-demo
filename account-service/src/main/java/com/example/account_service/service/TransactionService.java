@@ -6,7 +6,7 @@ import com.example.account_service.dto.transaction.TransactionCreateDTO;
 import com.example.account_service.dto.transaction.TransactionDTO;
 
 public interface TransactionService {
-    public TransactionDTO createTransaction(TransactionCreateDTO transaction);
+    public TransactionDTO createTransaction(TransactionCreateDTO transactionCreateDTO);
 
     public List<TransactionDTO> getAllTransactions();
 

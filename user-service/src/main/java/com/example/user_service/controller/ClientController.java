@@ -37,6 +37,7 @@ public class ClientController {
     @Operation(summary = "Create a new client")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Client created"),
+            @ApiResponse(responseCode = "400", description = "Invalid client data"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @PostMapping
@@ -76,6 +77,7 @@ public class ClientController {
     @Operation(summary = "Update a client")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Client updated"),
+            @ApiResponse(responseCode = "400", description = "Invalid client data"),
             @ApiResponse(responseCode = "404", description = "Client not found"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })

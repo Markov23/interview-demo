@@ -7,7 +7,7 @@ import com.example.account_service.dto.account.AccountDTO;
 import com.example.account_service.dto.account.AccountUpdateDTO;
 
 public interface AccountService {
-    public AccountDTO createAccount(AccountCreateDTO account);
+    public AccountDTO createAccount(AccountCreateDTO accountCreateDTO);
 
     public List<AccountDTO> getAllAccounts();
 
