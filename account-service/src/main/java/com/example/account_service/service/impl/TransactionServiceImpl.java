@@ -1,6 +1,7 @@
 package com.example.account_service.service.impl;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -54,7 +55,7 @@ public class TransactionServiceImpl implements TransactionService {
         Transaction transaction = transactionCreateDTO.toEntity();
         transaction.setAccount(account);
         transaction.setBalance(newBalance);
-        transaction.setDate(new Timestamp(System.currentTimeMillis()));
+        transaction.setDate(LocalDateTime.now());
 
         return TransactionDTO.fromEntity(transactionRepository.save(transaction));
     }

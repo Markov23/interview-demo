@@ -1,6 +1,6 @@
 package com.example.account_service.entity;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import com.example.account_service.common.enums.TransactionType;
 
@@ -27,7 +27,7 @@ public class Transaction {
     private Long id;
     
     @Column(name = "\"TRANSACTION_DATE\"", nullable = false)
-    private Timestamp date;
+    private LocalDateTime date;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "\"TRANSACTION_TYPE\"")

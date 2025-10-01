@@ -1,5 +1,7 @@
 package com.example.account_service.config;
 
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
@@ -9,35 +11,38 @@ import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.example.constants.RabbitConstants;
+
 @Configuration
 public class RabbitConfig {
 
-    // --- Exchanges
     @Bean
-    public DirectExchange validationExchange() {
-        return new DirectExchange("client.validation.exchange");
+    public DirectExchange clientValidationExchange() {
+        return new DirectExchange(RabbitConstants.CLIENT_VALIDATION_EXCHANGE);
     }
 
     @Bean
-    public TopicExchange accountEventExchange() {
-        return new TopicExchange("account.events.exchange");
+    public DirectExchange accountStatementExchange() {
+        return new DirectExchange(RabbitConstants.ACCOUNT_STATEMENT_EXCHANGE);
     }
 
-    // --- Queues
     @Bean
-    public Queue clientValidationResponseQueue() {
-        return new Queue("client.validation.response", true);
+    public Queue clientValidationRequestQueue() {
+        return new Queue(RabbitConstants.ACCOUNT_STATEMENT_QUEUE, true);
     }
 
-    // --- Message converter (JSON)
+    @Bean
+    public Binding bindAccountStatementRequest(Queue accountStatementQueue, DirectExchange accountStatementExchange) {
+        return BindingBuilder.bind(accountStatementQueue).to(accountStatementExchange).with(RabbitConstants.ACCOUNT_STATEMENT_BIND);
+    }
+
     @Bean
     public Jackson2JsonMessageConverter jackson2JsonMessageConverter() {
         return new Jackson2JsonMessageConverter();
     }
 
     @Bean
-    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory,
-                                         Jackson2JsonMessageConverter converter) {
+    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory, Jackson2JsonMessageConverter converter) {
         RabbitTemplate template = new RabbitTemplate(connectionFactory);
         template.setMessageConverter(converter);
         return template;

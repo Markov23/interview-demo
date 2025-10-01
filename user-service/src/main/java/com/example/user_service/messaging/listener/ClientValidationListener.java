@@ -4,6 +4,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Service;
 
+import com.example.constants.RabbitConstants;
 import com.example.dto.ClientValidationRequest;
 import com.example.dto.ClientValidationResponse;
 import com.example.user_service.repository.ClientRepository;
@@ -17,11 +18,10 @@ public class ClientValidationListener {
         this.clientRepository = clientRepository;
     }
 
-    @RabbitListener(queues = "client.validation.request")
+    @RabbitListener(queues = RabbitConstants.CLIENT_VALIDATION_QUEUE)
     @SendTo
     public ClientValidationResponse handleValidation(ClientValidationRequest req) {
         boolean exists = clientRepository.existsById(req.clientId());
-        System.out.println("Exist "+req.clientId()+"? " + exists);
-        return new ClientValidationResponse(req.requestId(), req.clientId(), exists);
+        return new ClientValidationResponse(req.clientId(), exists);
     }
 }

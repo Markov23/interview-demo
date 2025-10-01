@@ -1,7 +1,5 @@
 package com.example.account_service.dto.transaction;
 
-import java.sql.Timestamp;
-
 import com.example.account_service.common.enums.TransactionType;
 import com.example.account_service.entity.Transaction;
 

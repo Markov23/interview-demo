@@ -1,7 +1,9 @@
 package com.example.user_service.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,9 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.user_service.dto.ResponseApi;
+import com.example.user_service.dto.client.ClientAccountStatementDTO;
 import com.example.user_service.dto.client.ClientCreateDTO;
 import com.example.user_service.dto.client.ClientDTO;
 import com.example.user_service.dto.client.ClientUpdateDTO;
@@ -71,6 +75,26 @@ public class ClientController {
         ClientDTO client = clientService.getClientById(id);
 
         ResponseApi<ClientDTO> response = new ResponseApi<>("Client retrieved successfully", client);
+        return ResponseEntity.ok(response);
+    }
+
+    @Operation(summary = "Get client account statement by client id and date interval")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Account statement"),
+            @ApiResponse(responseCode = "404", description = "Client not found"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    @GetMapping("/accounts/{id}")
+    public ResponseEntity<ResponseApi<ClientAccountStatementDTO>> getAccountStatementByClientId(
+            @PathVariable Integer id,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
+
+        ClientAccountStatementDTO account = clientService.getAccountStatementByClientId(id, startDate, endDate);
+
+        ResponseApi<ClientAccountStatementDTO> response = new ResponseApi<>(
+            "Account statement retrieved successfully",account
+        );
         return ResponseEntity.ok(response);
     }
 
