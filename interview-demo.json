@@ -11,6 +11,29 @@
 			"name": "accounts",
 			"item": [
 				{
+					"name": "createAccount",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"SAVINGS\",\r\n  \"initialBalance\": 100000,\r\n  \"clientId\": 11\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{accounstURL}}",
+							"host": [
+								"{{accounstURL}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "getAllAccounts",
 					"request": {
 						"method": "GET",
@@ -127,6 +150,34 @@
 					"response": []
 				},
 				{
+					"name": "getAccountStatementByClientId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{clientsURL}}/accounts/1?startDate=2025-09-01&endDate=2025-10-01",
+							"host": [
+								"{{clientsURL}}"
+							],
+							"path": [
+								"accounts",
+								"1"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2025-09-01"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-10-01"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "updateClient",
 					"request": {
 						"method": "PUT",
@@ -146,24 +197,6 @@
 								"{{clientsURL}}"
 							],
 							"path": [
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getAccountStatementByClientId",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{clientsURL}}/accounts/1",
-							"host": [
-								"{{clientsURL}}"
-							],
-							"path": [
-								"accounts",
 								"1"
 							]
 						}

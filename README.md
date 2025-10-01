@@ -34,6 +34,17 @@
 | user-service | 8081:8080 | Clients microservice | Microservicio de clientes |
 | account-service | 8082:8080 | Accounts microservice | Microservicio de cuentas|
 
+## :point_right: Important considerations / Consideraciones importantes :point_left:
+
+1. The project requires Java 21 / El proyecto requiere Java 21
+2. account-service connects with user-service to validate that the customer exists when creating a new account / account-service se conecta con user-service para validar que el cliente existe al crear una nueva cuenta
+3. Valid account types are SAVINGS and CHECKING / Los tipo de cuenta válidos son SAVINGS y CHECKING
+4. Valid transaction types are DEPOSIT, REFUND, PAYMENT, and TRANSFER / Los tipo de transaccion válidos son DEPOSIT, REFUND, PAYMENT y TRANSFER
+5. user-service connects to account-service to obtain accounts and transactions / user-service se conecta a account-service para obtener las cuentas y movimientos
+6. Valid genders are M and F / Los generos válidos son M y F
+7. messaging-dto contains DTOs and constants necessary for communication between microservices / messaging-dto contiene DTOs y constantes necesarias para la comunicación entre los microservicios
+8. You must have Docker installed and virtualization enabled / Es necesario tener docker instalado y la virtualización activada.
+
 ## Tests / Pruebas :hammer_and_wrench:
 
 ### Unit and Integration / Unitarias e Integración
