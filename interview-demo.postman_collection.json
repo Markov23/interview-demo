@@ -1,0 +1,288 @@
+{
+	"info": {
+		"_postman_id": "d3bd6edf-26e5-4601-9f6a-9e499c35f422",
+		"name": "interview-demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48928654",
+		"_collection_link": "https://marcobdac-2872489.postman.co/workspace/9dd50737-55a4-4d84-82c7-98b9129bcd5a/collection/48928654-d3bd6edf-26e5-4601-9f6a-9e499c35f422?action=share&source=collection_link&creator=48928654"
+	},
+	"item": [
+		{
+			"name": "accounts",
+			"item": [
+				{
+					"name": "getAllAccounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{accounstURL}}",
+							"host": [
+								"{{accounstURL}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAccountById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{accounstURL}}/1001000003",
+							"host": [
+								"{{accounstURL}}"
+							],
+							"path": [
+								"1001000003"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"state\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{accounstURL}}/1001000011",
+							"host": [
+								"{{accounstURL}}"
+							],
+							"path": [
+								"1001000011"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "clients",
+			"item": [
+				{
+					"name": "createClient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Maria\",\r\n    \"gender\": \"F\",\r\n    \"age\": 29,\r\n    \"identification\": \"ID26099\",\r\n    \"address\": \"Jalisco\",\r\n    \"phoneNumber\": \"831-114-4706\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{clientsURL}}",
+							"host": [
+								"{{clientsURL}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllClients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{clientsURL}}",
+							"host": [
+								"{{clientsURL}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getClientById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{clientsURL}}/1",
+							"host": [
+								"{{clientsURL}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateClient",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Irvin\",\r\n    \"gender\": \"F\",\r\n    \"age\": 29,\r\n    \"identification\": \"ID26099\",\r\n    \"address\": \"Jalisco\",\r\n    \"phoneNumber\": \"831-114-4706\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{clientsURL}}/1",
+							"host": [
+								"{{clientsURL}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAccountStatementByClientId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{clientsURL}}/accounts/1",
+							"host": [
+								"{{clientsURL}}"
+							],
+							"path": [
+								"accounts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteClient",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{clientsURL}}/12",
+							"host": [
+								"{{clientsURL}}"
+							],
+							"path": [
+								"12"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "transactions",
+			"item": [
+				{
+					"name": "createTransaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"DEPOSIT\",\r\n  \"value\": 200,\r\n  \"accountNumber\": \"1001000002\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{transactionsURL}}",
+							"host": [
+								"{{transactionsURL}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllTransactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{transactionsURL}}",
+							"host": [
+								"{{transactionsURL}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTransactionById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{transactionsURL}}/1",
+							"host": [
+								"{{transactionsURL}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "clientsURL",
+			"value": "http://localhost:8081/api/clients"
+		},
+		{
+			"key": "accounstURL",
+			"value": "http://localhost:8082/api/accounts"
+		},
+		{
+			"key": "transactionsURL",
+			"value": "http://localhost:8082/api/transactions"
+		}
+	]
+}

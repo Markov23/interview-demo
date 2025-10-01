@@ -1,11 +1,7 @@
 package com.example.account_service.controller;
 
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,13 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.account_service.dto.ResponseApi;
 import com.example.account_service.dto.account.AccountCreateDTO;
 import com.example.account_service.dto.account.AccountDTO;
-import com.example.account_service.dto.account.AccountTransactionsDTO;
 import com.example.account_service.dto.account.AccountUpdateDTO;
 import com.example.account_service.service.AccountService;
 

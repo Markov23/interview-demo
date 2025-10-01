@@ -5,8 +5,12 @@ import java.util.stream.Collectors;
 
 import com.example.user_service.entity.Client;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class ClientDTO {
     private Integer id;

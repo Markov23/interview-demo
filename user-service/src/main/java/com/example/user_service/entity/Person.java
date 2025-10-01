@@ -9,8 +9,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @MappedSuperclass
 public class Person {
@@ -37,4 +41,20 @@ public class Person {
 
     @Column(name = "\"PHONE_NUMBER\"", nullable = false)
     private String phoneNumber;
+
+    public Person(
+        String name,
+        Gender gender,
+        Integer age,
+        String identification,
+        String address,
+        String phoneNumber
+    ) {
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.identification = identification;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+    }
 }

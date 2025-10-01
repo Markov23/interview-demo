@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.user_service.common.constants.ApiConstants;
 import com.example.user_service.dto.ResponseApi;
 import com.example.user_service.dto.client.ClientAccountStatementDTO;
 import com.example.user_service.dto.client.ClientCreateDTO;
@@ -30,7 +31,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 @RestController
 @Tag(name = "Clients")
-@RequestMapping("/api/clients")
+@RequestMapping(ApiConstants.API_CLIENT_URL)
 public class ClientController {
     private final ClientService clientService;
 
