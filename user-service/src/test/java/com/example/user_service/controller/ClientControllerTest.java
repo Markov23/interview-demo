@@ -25,7 +25,7 @@ class ClientControllerTest {
     private MockMvc mockMvc;
 
     @MockitoBean
-    private ClientService clientService; // mockeamos la interfaz
+    private ClientService clientService;
 
     @Test
     void testGetClientById() throws Exception {

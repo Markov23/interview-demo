@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.account_service.common.constants.ApiConstants;
 import com.example.account_service.dto.ResponseApi;
 import com.example.account_service.dto.account.AccountCreateDTO;
 import com.example.account_service.dto.account.AccountDTO;
@@ -25,7 +26,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @Tag(name = "Accounts")
-@RequestMapping("/api/accounts")
+@RequestMapping(ApiConstants.API_ACCOUNTS_URL)
 public class AccountController {
     private final AccountService accountService;
 

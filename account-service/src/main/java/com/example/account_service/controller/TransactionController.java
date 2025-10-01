@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.account_service.common.constants.ApiConstants;
 import com.example.account_service.dto.ResponseApi;
 import com.example.account_service.dto.transaction.TransactionCreateDTO;
 import com.example.account_service.dto.transaction.TransactionDTO;
@@ -23,7 +24,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @Tag(name = "Transactions")
-@RequestMapping("/api/transactions")
+@RequestMapping(ApiConstants.API_TRANSACTIONS_URL)
 public class TransactionController {
     private final TransactionService transactionService;
 
